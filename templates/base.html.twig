@@ -21,15 +21,16 @@
         <a href="#" class="text-white text-3xl font-bold">404 Not Found</a>
         <div>
             <a href="{{ path('homepage') }}" class="text-white mx-4 hover:text-gray-200">Accueil</a>
+            <a href="#categories" class="text-white mx-4 hover:text-gray-200">Catégories</a>
+            <a href="{{ path('app_topic_index') }}" class="text-white mx-4 hover:text-gray-200">Topic</a>
             {% if app.user %}
-                <a href="#categories" class="text-white mx-4 hover:text-gray-200">Catégories</a>
-                <a href="#about" class="text-white mx-4 hover:text-gray-200">Topic</a>
                 <a href="#" class="text-white mx-4 hover:text-gray-200">Profil</a>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="#" class="text-white mx-4 hover:text-gray-200">Admin</a>
                 {% endif %}
                 <a href="{{ path('app_logout') }}" class="text-white mx-4 hover:text-gray-200">Se déconnecter</a>
             {% else %}
+
                 <a class="text-white mx-4 hover:text-gray-200" href="{{ path('app_login') }}">Se connecter</a>
             {% endif %}
 

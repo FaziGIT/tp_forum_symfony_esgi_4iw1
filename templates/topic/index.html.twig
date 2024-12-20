@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tout les topics{% endblock %}
+
+{% block body %}
+    <div class="bg-gray-100 min-h-screen py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-4xl font-bold text-gray-800">Topics</h1>
+                {% if app.user %}
+                    <a href="{{ path('app_topic_new') }}"
+                       class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                        Créer un Topic
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="overflow-hidden shadow-lg rounded-lg bg-white">
+                <table class="min-w-full bg-white">
+                    <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Titre</th>
+                        <th class="py-3 px-6 text-left">Description</th>
+                        <th class="py-3 px-6 text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                    {% for topic in topics %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left font-medium text-blue-500">{{ topic.title }}</td>
+                            <td class="py-3 px-6 text-left">{{ topic.description }}</td>
+                            <td class="py-3 px-6 justify-center gap-2 flex">
+                                <a href="{{ path('app_topic_show', {'id': topic.id}) }}"
+                                   class="text-blue-500 hover:underline flex items-center space-x-2">
+                                    <svg fill="#000000" width="25px" height="25px" viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"/>
+                                    </svg>
+                                </a>
+                                {% if topic.user == app.user or is_granted("ROLE_ADMIN") %}
+                                    <a href="{{ path('app_topic_edit', {'id': topic.id}) }}"
+                                       class="text-blue-500 hover:underline flex items-center space-x-2">
+                                        <svg fill="#000000" width="25px" height="25px" viewBox="0 0 24 24"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z"/>
+                                        </svg>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
