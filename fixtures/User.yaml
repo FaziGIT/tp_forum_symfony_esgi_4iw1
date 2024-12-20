@@ -1,0 +1,8 @@
+App\Entity\User:
+  user_{1..10}:
+    email: '<email()>'
+    roles: ['ROLE_USER']
+    password: '<password()>'
+    username: '<username()>'
+    createdAt: '<dateTimeBetween("-1 year", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
