@@ -6,7 +6,7 @@
 
     <!-- Hero Section -->
     <section class="bg-blue-500 text-white text-center py-20">
-        <h1 class="text-4xl font-semibold">Bienvenue sur notre Forum !</h1>
+        <h1 class="text-4xl font-semibold">Bienvenue sur notre Forum {{ app.user ? app.user.username }} ! </h1>
         <p class="text-lg mt-4">Rejoignez des discussions passionnantes avec des membres du monde entier.</p>
         <a href="#categories"
            class="mt-8 inline-block px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-400 transition duration-300">Explorer
