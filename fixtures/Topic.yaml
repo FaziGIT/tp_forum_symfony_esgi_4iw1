@@ -1,0 +1,9 @@
+App\Entity\Topic:
+  topic_{1..10}:
+    title: '<sentence(6)>'
+    description: '<paragraph(2)>'
+    createdAt: '<dateTimeBetween("-6 months", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+    langue: '@langue_*'
+    user: '@user_*'
+    categories: '3x @category_*'

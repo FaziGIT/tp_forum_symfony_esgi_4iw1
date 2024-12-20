@@ -1,0 +1,29 @@
+# fixtures/response.yaml
+
+App\Entity\Response:
+  # Réponses principales (sans parent)
+  response_main_{1..20}:
+    content: '<paragraph(3)>'
+    createdAt: '<dateTimeBetween("-6 months", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+    topic: '@topic_*'
+    user: '@user_*'
+    parent: null
+
+  # Premières réponses aux réponses principales
+  response_reply_level1_{1..30}:
+    content: '<paragraph(2)>'
+    createdAt: '<dateTimeBetween("-6 months", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+    topic: '@topic_*'
+    user: '@user_*'
+    parent: '@response_main_*'
+
+  # Deuxième niveau de réponses (réponses aux réponses)
+  response_reply_level2_{1..15}:
+    content: '<paragraph(1)>'
+    createdAt: '<dateTimeBetween("-6 months", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+    topic: '@topic_*'
+    user: '@user_*'
+    parent: '@response_reply_level1_*'

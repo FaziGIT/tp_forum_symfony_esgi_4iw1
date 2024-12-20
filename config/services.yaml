@@ -6,6 +6,9 @@
 parameters:
 
 services:
+    App\DataFixtures\Provider\HashPasswordProvider:
+        tags: [ { name: nelmio_alice.faker.provider } ]
+
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

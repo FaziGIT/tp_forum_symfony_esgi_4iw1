@@ -1,8 +1,27 @@
+parameters:
+  hash: $2y$13$PMUioizqkbf9KFVpggxFnu1NZVnHPcPltfagtny6J6E.GGxHTBo1q
+
 App\Entity\User:
   user_{1..10}:
     email: '<email()>'
     roles: ['ROLE_USER']
-    password: '<password()>'
+    password: "<{hash}>"
     username: '<username()>'
+    createdAt: '<dateTimeBetween("-1 year", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+
+  admin:
+    email: 'admin@admin.admin'
+    roles: ['ROLE_ADMIN']
+    password: "<{hash}>"
+    username: 'admin'
+    createdAt: '<dateTimeBetween("-1 year", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+
+  banned:
+    email: 'ban@ban.com'
+    roles: ['ROLE_BANNED']
+    password: "<{hash}>"
+    username: 'banned'
     createdAt: '<dateTimeBetween("-1 year", "now")>'
     updatedAt: '<dateTimeBetween($createdAt, "now")>'
