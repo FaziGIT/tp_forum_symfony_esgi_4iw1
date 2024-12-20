@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="bg-blue-600 p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="#" class="text-white text-3xl font-bold">404 Not Found</a>
+        <div>
+            <a href="{{ path('homepage') }}" class="text-white mx-4 hover:text-gray-200">Accueil</a>
+            {% if app.user %}
+                <a href="#categories" class="text-white mx-4 hover:text-gray-200">Catégories</a>
+                <a href="#about" class="text-white mx-4 hover:text-gray-200">Topic</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="#" class="text-white mx-4 hover:text-gray-200">Admin</a>
+                {% endif %}
+                <a href="{{ path('app_logout') }}" class="text-white mx-4 hover:text-gray-200">Se déconnecter</a>
+            {% else %}
+                <a class="text-white mx-4 hover:text-gray-200" href="{{ path('app_login') }}">Se connecter</a>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+{% block body %}
+
+{% endblock %}
+
+<!-- Footer -->
+<footer id="contact" class="bg-blue-600 text-white py-8">
+    <div class="max-w-7xl mx-auto text-center">
+        <p>&copy; 2024 Forum. Tous droits réservés.</p>
+        <div class="mt-4">
+            <a href="mailto:contact@forum.com" class="text-white hover:text-gray-200">Contactez-nous</a>
+        </div>
+    </div>
+</footer>
+</body>
 </html>
