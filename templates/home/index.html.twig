@@ -3,7 +3,50 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div {{ react_component('Hello', {fullName: 'salut'}) }}>
-        Loading...
-    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-500 text-white text-center py-20">
+        <h1 class="text-4xl font-semibold">Bienvenue sur notre Forum !</h1>
+        <p class="text-lg mt-4">Rejoignez des discussions passionnantes avec des membres du monde entier.</p>
+        <a href="#categories"
+           class="mt-8 inline-block px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-400 transition duration-300">Explorer
+            les discussions</a>
+    </section>
+
+    <!-- Catégories Section -->
+    <section id="categories" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-semibold text-center mb-8">Catégories populaires</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600">Technologie</h3>
+                    <p class="mt-2 text-gray-700">Discussions sur les dernières innovations technologiques et
+                        gadgets.</p>
+                    <a href="#" class="mt-4 text-blue-500 hover:underline">Voir les discussions</a>
+                </div>
+                <div class="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600">Jeux vidéo</h3>
+                    <p class="mt-2 text-gray-700">Partagez vos expériences, astuces et avis sur vos jeux préférés.</p>
+                    <a href="#" class="mt-4 text-blue-500 hover:underline">Voir les discussions</a>
+                </div>
+                <div class="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600">Voyages</h3>
+                    <p class="mt-2 text-gray-700">Discutez de vos destinations de rêve et des conseils pour voyager.</p>
+                    <a href="#" class="mt-4 text-blue-500 hover:underline">Voir les discussions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos Section -->
+    <section id="about" class="py-16 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-semibold text-center mb-8">À propos de notre forum</h2>
+            <p class="text-lg text-gray-700 text-center">Notre forum est un espace convivial où vous pouvez échanger,
+                poser des questions et partager vos idées sur différents sujets. Que vous soyez passionné de
+                technologie, de jeux vidéo, ou de voyages, vous trouverez ici une communauté active et accueillante.</p>
+        </div>
+    </section>
+
+
 {% endblock %}
