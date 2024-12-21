@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Topic;
+use App\Form\CommentType;
 use App\Form\TopicType;
 use App\Repository\TopicRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,17 +48,27 @@ final class TopicController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_topic_show', methods: ['GET'])]
-    public function show(Topic $topic): Response
+    #[Route('/{id}', name: 'app_topic_show', methods: ['GET', 'POST'])]
+    public function show(Topic $topic, Request $request): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        // TODO: Faire en sorte de mettre le formulaire de Comment sur la page
+
         return $this->render('topic/show.html.twig', [
             'topic' => $topic,
+            'form' => $form,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_topic_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Topic $topic, EntityManagerInterface $entityManager): Response
     {
+        if ($topic->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
 

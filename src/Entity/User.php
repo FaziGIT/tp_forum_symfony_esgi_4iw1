@@ -48,9 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $topics;
 
     /**
-     * @var Collection<int, Response>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Response::class, mappedBy: 'user', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $responses;
 
     #[ORM\Column(length: 255)]
@@ -91,13 +91,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
+     * @return list<string>
      * @see UserInterface
      *
-     * @return list<string>
      */
     public function getRoles(): array
     {
@@ -197,14 +197,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Response>
+     * @return Collection<int, Comment>
      */
     public function getResponses(): Collection
     {
         return $this->responses;
     }
 
-    public function addResponse(Response $response): static
+    public function addResponse(Comment $response): static
     {
         if (!$this->responses->contains($response)) {
             $this->responses->add($response);
@@ -214,7 +214,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeResponse(Response $response): static
+    public function removeResponse(Comment $response): static
     {
         if ($this->responses->removeElement($response)) {
             // set the owning side to null (unless already changed)

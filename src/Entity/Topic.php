@@ -21,6 +21,12 @@ class Topic
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     /**
      * @var Collection<int, Category>
      */
@@ -32,9 +38,9 @@ class Topic
     private ?Langue $langue = null;
 
     /**
-     * @var Collection<int, Response>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Response::class, mappedBy: 'topic', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'topic', orphanRemoval: true)]
     private Collection $responses;
 
     #[ORM\ManyToOne(inversedBy: 'topics')]
@@ -139,14 +145,14 @@ class Topic
     }
 
     /**
-     * @return Collection<int, Response>
+     * @return Collection<int, Comment>
      */
     public function getResponses(): Collection
     {
         return $this->responses;
     }
 
-    public function addResponse(Response $response): static
+    public function addResponse(Comment $response): static
     {
         if (!$this->responses->contains($response)) {
             $this->responses->add($response);
@@ -156,7 +162,7 @@ class Topic
         return $this;
     }
 
-    public function removeResponse(Response $response): static
+    public function removeResponse(Comment $response): static
     {
         if ($this->responses->removeElement($response)) {
             // set the owning side to null (unless already changed)

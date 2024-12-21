@@ -1,38 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Topic{% endblock %}
+{% block title %}{{ topic.title }}{% endblock %}
 
 {% block body %}
-    <h1>Topic</h1>
+    <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg my-6">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ topic.title }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ topic.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ topic.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ topic.description }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ topic.createdAt ? topic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ topic.updatedAt ? topic.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <p class="text-gray-600 text-sm mb-4">
+            Par <strong>{{ topic.user.username }}</strong>
+            le {{ topic.createdAt ? topic.createdAt|date('d M Y') : 'Date inconnue' }}
+        </p>
 
-    <a href="{{ path('app_topic_index') }}">back to list</a>
+        <div class="mb-6">
+            <p class="text-lg text-gray-700">{{ topic.description }}</p>
+        </div>
 
-    <a href="{{ path('app_topic_edit', {'id': topic.id}) }}">edit</a>
+        <div class="mb-6">
+            <span class="font-medium text-gray-800">Catégories: </span>
+            {% for category in topic.categories %}
+                <a href="{{ path('app_category_show', {'id': category.id}) }}"
+                   class="inline-block bg-blue-200 text-blue-800 rounded-full px-3 py-1 text-sm mr-2 mb-2">
+                    {{ category.name }}
+                </a>
+            {% else %}
+                <span class="text-gray-500">Aucune catégorie assignée</span>
+            {% endfor %}
+        </div>
 
-    {{ include('topic/_delete_form.html.twig') }}
+        <div class="mb-6">
+            <span class="font-medium text-gray-800">Langue: </span>
+            <span class="text-gray-600">{{ topic.langue.name }}</span>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800">Réponses</h2>
+            {% if topic.responses|length > 0 %}
+                <ul class="space-y-4 mt-4">
+                    {% for response in topic.responses %}
+                        <li class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                            <p class="font-medium text-gray-800">{{ response.user.username }}</p>
+                            <p class="text-sm text-gray-600">{{ response.createdAt|date('d M Y H:i') }}</p>
+                            <p class="text-gray-700 mt-2">{{ response.content }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500">Il n'y a pas encore de réponses à ce topic.</p>
+            {% endif %}
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <a href="{{ path('app_topic_index') }}"
+               class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-400 transition duration-300">
+                Retour à la liste
+            </a>
+            {% if topic.user == app.user %}
+                <a href="{{ path('app_topic_edit', {'id': topic.id}) }}"
+                   class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
+                    Modifier le topic
+                </a>
+
+            {% endif %}
+        </div>
+
+    </div>
 {% endblock %}

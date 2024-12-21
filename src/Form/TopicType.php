@@ -21,6 +21,7 @@ class TopicType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'label' => 'Choisir une ou plusieurs catégories',
             ])
             ->add('langue', EntityType::class, [
                 'class' => Langue::class,
