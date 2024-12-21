@@ -37,6 +37,7 @@ security:
     - { path: ^/login, roles: PUBLIC_ACCESS }
     - { path: ^/register, roles: PUBLIC_ACCESS }
     - { path: ^/category, roles: ROLE_ADMIN }
+    - { path: ^/language, roles: ROLE_ADMIN }
     - { path: ^/.*/new$, roles: ROLE_USER }
 
   role_hierarchy:

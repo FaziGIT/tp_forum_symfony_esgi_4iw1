@@ -1,16 +1,16 @@
 App\Entity\Language:
   langue_fr:
     name: 'Français'
-    code: !php/const App\Enum\LanguageCodeEnum::FR
+    code: 'FR'
 
   langue_en:
     name: 'English'
-    code: !php/const App\Enum\LanguageCodeEnum::EN
+    code: 'EN'
 
   langue_es:
     name: 'Español'
-    code: !php/const App\Enum\LanguageCodeEnum::ES
+    code: 'ES'
 
   langue_de:
     name: 'Deutsch'
-    code: !php/const App\Enum\LanguageCodeEnum::DE
+    code: 'DE'

@@ -19,14 +19,15 @@ class Language
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(enumType: LanguageCodeEnum::class)]
-    private ?LanguageCodeEnum $code = null;
 
     /**
      * @var Collection<int, Topic>
      */
     #[ORM\OneToMany(targetEntity: Topic::class, mappedBy: 'langue', orphanRemoval: true)]
     private Collection $topics;
+
+    #[ORM\Column(length: 2)]
+    private ?string $code = null;
 
     public function __construct()
     {
@@ -46,18 +47,6 @@ class Language
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCode(): ?LanguageCodeEnum
-    {
-        return $this->code;
-    }
-
-    public function setCode(LanguageCodeEnum $code): static
-    {
-        $this->code = $code;
 
         return $this;
     }
@@ -88,6 +77,18 @@ class Language
                 $topic->setLangue(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): static
+    {
+        $this->code = $code;
 
         return $this;
     }
