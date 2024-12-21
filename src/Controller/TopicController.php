@@ -55,20 +55,6 @@ final class TopicController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        // TODO: Faire en sorte de mettre le formulaire de Comment sur la page
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
-            $comment->setTopic($topic);
-            $topic->addResponse($comment);
-            $entityManager->persist($topic);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Commentaire ajouté avec succès !');
-
-            return $this->redirectToRoute('app_topic_show', ["id" => $topic->getId()], Response::HTTP_SEE_OTHER);
-
-        }
-
         $newTopic = $topicRepository->findInOneRequest($topic);
         return $this->render('topic/show.html.twig', [
             'topic' => $newTopic,
