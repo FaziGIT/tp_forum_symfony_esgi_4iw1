@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+    <div class="max-w-5xl mx-auto mt-10">
+        <!-- Profile Card -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <div class="flex items-center space-x-4">
+
+                <!-- Profile Info -->
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">{{ app.user.username }}</h2>
+                    <p class="text-gray-600">{{ app.user.email }}</p>
+                    <p class="text-sm text-gray-500 mt-1">
+                        Membre depuis le {{ app.user.createdAt|date('d/m/Y') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Details -->
+        <div class="bg-white shadow rounded-lg mt-6 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Détails Utilisateur</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Adresse Email</p>
+                    <p class="text-gray-800">{{ app.user.email }}</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Rôles</p>
+                    <p class="text-gray-800">{{ app.user.roles|join(', ') }}</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Statut Vérification</p>
+                    <p class="text-gray-800">
+                        {{ app.user.isVerified ? 'Vérifié' : 'Non Vérifié' }}
+                    </p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Dernière Mise à Jour</p>
+                    <p class="text-gray-800">{{ app.user.updatedAt|date('d/m/Y H:i') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topics Section -->
+        <div class="bg-white shadow rounded-lg mt-6 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Topics Créés</h3>
+            <ul class="space-y-4">
+                {% for topic in app.user.topics %}
+                    <li class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <h4 class="text-md font-semibold text-gray-800">{{ topic.title }}</h4>
+                        <p class="text-sm text-gray-600 mt-1">{{ topic.description }}</p>
+                        <p class="text-xs text-gray-500 mt-2">Créé le {{ topic.createdAt|date('d/m/Y H:i') }}</p>
+                    </li>
+                {% else %}
+                    <p class="text-gray-500">Aucun topic créé pour le moment.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Responses Section -->
+        <div class="bg-white shadow rounded-lg mt-6 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Réponses Publiées</h3>
+            <ul class="space-y-4">
+                {% for response in app.user.responses %}
+                    <li>
+                        <a href="{{ path('app_topic_show', { id: response.topic.id }) }}"
+                           class="block p-4 bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100 transition">
+                            <p class="text-sm text-gray-600">{{ response.content }}</p>
+                            <p class="text-xs text-gray-500 mt-2">Répondu
+                                le {{ response.createdAt|date('d/m/Y H:i') }}</p>
+                        </a>
+                    </li>
+                {% else %}
+                    <p class="text-gray-500">Aucune réponse publiée pour le moment.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}

@@ -22,7 +22,7 @@
             <a href="{{ path('homepage') }}" class="text-white mx-4 hover:text-gray-200">Accueil</a>
             <a href="{{ path('app_topic_index') }}" class="text-white mx-4 hover:text-gray-200">Topic</a>
             {% if app.user %}
-                <a href="#" class="text-white mx-4 hover:text-gray-200">Profil</a>
+                <a href="{{ path('app_profil') }}" class="text-white mx-4 hover:text-gray-200">Profil</a>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_category_index') }}"
                        class="text-white mx-4 hover:text-gray-200">Catégories</a>
