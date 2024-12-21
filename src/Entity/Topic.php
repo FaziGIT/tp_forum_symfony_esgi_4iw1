@@ -40,7 +40,7 @@ class Topic
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'topic', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'topic', cascade: ['persist'], orphanRemoval: true)]
     private Collection $responses;
 
     #[ORM\ManyToOne(inversedBy: 'topics')]

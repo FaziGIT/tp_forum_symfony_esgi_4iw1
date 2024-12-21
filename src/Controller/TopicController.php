@@ -49,13 +49,25 @@ final class TopicController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_topic_show', methods: ['GET', 'POST'])]
-    public function show(Topic $topic, Request $request): Response
+    public function show(Topic $topic, Request $request, EntityManagerInterface $entityManager): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         // TODO: Faire en sorte de mettre le formulaire de Comment sur la page
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setTopic($topic);
+            $topic->addResponse($comment);
+            $entityManager->persist($topic);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Commentaire ajouté avec succès !');
+
+            return $this->redirectToRoute('app_topic_show', ["id" => $topic->getId()], Response::HTTP_SEE_OTHER);
+
+        }
 
         return $this->render('topic/show.html.twig', [
             'topic' => $topic,
@@ -66,9 +78,10 @@ final class TopicController extends AbstractController
     #[Route('/{id}/edit', name: 'app_topic_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Topic $topic, EntityManagerInterface $entityManager): Response
     {
-        if ($topic->getUser() !== $this->getUser()) {
+        if ($topic->getUser() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
+
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
 

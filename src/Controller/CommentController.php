@@ -33,7 +33,7 @@ final class CommentController extends AbstractController
             $entityManager->persist($response);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_response_index', [], Comment::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_response_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('comment/new.html.twig', [
@@ -59,7 +59,7 @@ final class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_response_index', [], Comment::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_response_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('comment/edit.html.twig', [
@@ -76,6 +76,6 @@ final class CommentController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_response_index', [], Comment::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_topic_show', ['id' => $response->getTopic()->getId()], Response::HTTP_SEE_OTHER);
     }
 }
