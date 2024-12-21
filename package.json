@@ -9,6 +9,7 @@
         "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
         "@symfony/webpack-encore": "^5.0.0",
+        "@types/lodash": "^4.17.13",
         "autoprefixer": "^10.4.20",
         "core-js": "^3.38.0",
         "postcss": "^8.4.49",
@@ -30,5 +31,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21"
     }
 }

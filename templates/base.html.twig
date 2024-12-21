@@ -18,6 +18,9 @@
 <nav class="bg-blue-600 p-4 shadow-lg">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
         <a href="{{ path('homepage') }}" class="text-white text-3xl font-bold">404 Not Found</a>
+        <div {{ react_component('SearchBar', { placeholder: 'Recherchez un élément', onSearch: 'searchHandler' }) }}>
+            Loading...
+        </div>
         <div>
             <a href="{{ path('homepage') }}" class="text-white mx-4 hover:text-gray-200">Accueil</a>
             <a href="{{ path('app_topic_index') }}" class="text-white mx-4 hover:text-gray-200">Topic</a>
