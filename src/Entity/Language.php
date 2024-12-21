@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Enum\LanguageCodeEnum;
 use App\Repository\LangueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
