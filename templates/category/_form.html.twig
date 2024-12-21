@@ -1,4 +1,43 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg m-5">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        {% if app.request.attributes.get('_route') == 'app_category_new' %}
+            Création d'une nouvelle catégorie
+        {% else %}
+            Édition d'une catégorie
+        {% endif %}
+    </h2>
+
+    {{ form_start(form) }}
+    <div class="space-y-4">
+        <div class="flex flex-col">
+            {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'text-sm font-medium text-gray-700'}}) }}
+            <div class="mt-1">
+                {{ form_widget(form.name, {'attr': {'class': 'block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+            </div>
+        </div>
+
+        <div class="flex flex-col">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'text-sm font-medium text-gray-700'}}) }}
+            <div class="mt-1">
+                {{ form_widget(form.description, {'attr': {'class': 'block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <a href="{{ path('app_category_index') }}"
+               class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-400 transition duration-300">
+                Retour à la liste
+            </a>
+
+            <button type="submit"
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
+                Sauvegarder
+            </button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

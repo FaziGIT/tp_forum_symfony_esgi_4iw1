@@ -7,12 +7,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-4xl font-bold text-gray-800">Topics</h1>
-                {% if app.user %}
-                    <a target="_parent" href="{{ path('app_topic_new') }}"
-                       class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
-                        Créer un Topic
-                    </a>
-                {% endif %}
+                <a target="_parent" href="{{ path('app_topic_new') }}"
+                   class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                    Créer un Topic
+                </a>
             </div>
 
             <div class="overflow-hidden shadow-lg rounded-lg bg-white">

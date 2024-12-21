@@ -15,13 +15,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-            ->add('topics', EntityType::class, [
-                'class' => Topic::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-        ;
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
