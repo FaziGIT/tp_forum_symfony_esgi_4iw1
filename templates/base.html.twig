@@ -26,6 +26,8 @@
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_category_index') }}"
                        class="text-white mx-4 hover:text-gray-200">Catégories</a>
+                    <a href="{{ path('app_language_index') }}"
+                       class="text-white mx-4 hover:text-gray-200">Langues</a>
                     <a href="#" class="text-white mx-4 hover:text-gray-200">Admin</a>
                 {% endif %}
                 <a href="{{ path('app_logout') }}" class="text-white mx-4 hover:text-gray-200">Se déconnecter</a>
