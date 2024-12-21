@@ -45,9 +45,10 @@ final class CategoryController extends AbstractController
     #[Route('/{name}', name: 'app_category_topics_show', methods: ['GET'])]
     public function indexByTopics($name, CategoryRepository $categoryRepository): Response
     {
-        $categories = $categoryRepository->findAllTopicsByCategory($name);
+        $topics = $categoryRepository->findAllTopicsByCategory($name);
         return $this->render('category/index_by_topics.html.twig', [
-            'categories' => $categories,
+            'topics' => $topics->getTopics(),
+            'name' => $name,
         ]);
     }
 

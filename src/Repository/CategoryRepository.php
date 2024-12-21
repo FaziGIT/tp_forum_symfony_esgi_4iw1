@@ -61,15 +61,16 @@ class CategoryRepository extends ServiceEntityRepository
      * Récupère tous les topics associés à une catégorie donnée par son nom
      *
      * @param string $name Le nom de la catégorie
-     * @return Topic[] Retourne tous les topics associés à cette catégorie
+     * @return Topic[] Retourne une liste de topics associés à cette catégorie
      */
-    public function findAllTopicsByCategory(string $name): array
+    public function findAllTopicsByCategory(string $name): Category
     {
+        // Query builder pour récupérer uniquement les topics associés à la catégorie par nom
         return $this->createQueryBuilder('c')
             ->leftJoin('c.topics', 't')  // Jointure avec l'entité Topic
             ->where('c.name = :name')    // Filtrer les catégories par nom
             ->setParameter('name', $name) // Définir la valeur du paramètre :name
             ->getQuery()
-            ->getResult(); // Récupère les topics associés à cette catégorie
+            ->getOneOrNullResult();
     }
 }
