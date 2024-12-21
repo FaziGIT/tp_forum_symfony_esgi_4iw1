@@ -40,4 +40,17 @@ class TopicRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findInOneRequest(Topic $topic)
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t', 'c', 'cat', 'u', 'l')
+            ->leftJoin('t.responses', 'c')
+            ->leftJoin('t.categories', 'cat')
+            ->leftJoin('t.user', 'u')
+            ->leftJoin('t.langue', 'l')
+            ->andWhere('t.id = :id')
+            ->setParameter('id', $topic->getId())
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

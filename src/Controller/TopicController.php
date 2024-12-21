@@ -49,7 +49,7 @@ final class TopicController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_topic_show', methods: ['GET', 'POST'])]
-    public function show(Topic $topic, Request $request, EntityManagerInterface $entityManager): Response
+    public function show(Topic $topic, Request $request, EntityManagerInterface $entityManager, TopicRepository $topicRepository): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -69,8 +69,9 @@ final class TopicController extends AbstractController
 
         }
 
+        $newTopic = $topicRepository->findInOneRequest($topic);
         return $this->render('topic/show.html.twig', [
-            'topic' => $topic,
+            'topic' => $newTopic,
             'form' => $form,
         ]);
     }
