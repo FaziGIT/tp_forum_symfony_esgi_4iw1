@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use App\Entity\Langue;
+use App\Entity\Language;
 use App\Entity\Topic;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +24,7 @@ class TopicType extends AbstractType
                 'label' => 'Choisir une ou plusieurs catégories',
             ])
             ->add('langue', EntityType::class, [
-                'class' => Langue::class,
+                'class' => Language::class,
                 'choice_label' => 'name',
             ]);
     }

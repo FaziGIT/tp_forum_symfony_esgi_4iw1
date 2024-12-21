@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Enum\LangueCodeEnum;
+use App\Enum\LanguageCodeEnum;
 use App\Repository\LangueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LangueRepository::class)]
-class Langue
+class Language
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,8 +19,8 @@ class Langue
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(enumType: LangueCodeEnum::class)]
-    private ?LangueCodeEnum $code = null;
+    #[ORM\Column(enumType: LanguageCodeEnum::class)]
+    private ?LanguageCodeEnum $code = null;
 
     /**
      * @var Collection<int, Topic>
@@ -50,12 +50,12 @@ class Langue
         return $this;
     }
 
-    public function getCode(): ?LangueCodeEnum
+    public function getCode(): ?LanguageCodeEnum
     {
         return $this->code;
     }
 
-    public function setCode(LangueCodeEnum $code): static
+    public function setCode(LanguageCodeEnum $code): static
     {
         $this->code = $code;
 

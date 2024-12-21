@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum LangueCodeEnum: string
+enum LanguageCodeEnum: string
 {
     case FR = "fr";
     case EN = "en";

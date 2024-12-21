@@ -35,7 +35,7 @@ class Topic
 
     #[ORM\ManyToOne(inversedBy: 'topics')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Langue $langue = null;
+    private ?Language $langue = null;
 
     /**
      * @var Collection<int, Comment>
@@ -132,12 +132,12 @@ class Topic
         return $this;
     }
 
-    public function getLangue(): ?Langue
+    public function getLangue(): ?Language
     {
         return $this->langue;
     }
 
-    public function setLangue(?Langue $langue): static
+    public function setLangue(?Language $langue): static
     {
         $this->langue = $langue;
 
