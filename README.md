@@ -1,5 +1,6 @@
 Getting started:
 
+- Make sure you have PHP >= 8.2 and Node >= 21
 - Go change Makefile line 4 if you start docker with docker-compose and not docker compose
 - And after this, you can ```make start``` in cmd and click [here](http://localhost:8000) if the port is not running.
 
@@ -20,4 +21,4 @@ Here are the technologies I used:
 - **Mercure**
 - **Node.js**
 - **Webpack**
-- **Docker**  
+- **Docker**
