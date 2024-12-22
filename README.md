@@ -13,3 +13,11 @@ If an error appeared you can make all the steps manually:
 - ```php bin/console doctrine:schema:update --force```
 - ```php bin/console h:f:l --no-interaction```
 - Start the Symfony server with `symfony server:start -d`.
+
+Here are the technologies I used:
+
+- **Symfony**
+- **Mercure**
+- **Node.js**
+- **Webpack**
+- **Docker**  
