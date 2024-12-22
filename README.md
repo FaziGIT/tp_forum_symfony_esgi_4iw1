@@ -22,3 +22,6 @@ Here are the technologies I used:
 - **Node.js**
 - **Webpack**
 - **Docker**
+- **React**
+- **Tailwind**
+- **Hotwired Turbo**
