@@ -21,7 +21,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/ban/{id}', name: 'app_admin_ban', methods: ['POST'])]
+    #[Route('/admin/ban/{id}', name: 'app_admin_ban', methods: ['POST'])]
     public function switchBan(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
